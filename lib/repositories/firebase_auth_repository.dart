@@ -10,6 +10,7 @@ class FirebaseAuthRepository {
     this._firebaseAuth,
   );
 
+  //Function to get current user
   Future<Either<Failure, model.User>> currentUser() async {
     try {
       final user = _firebaseAuth.currentUser;
@@ -29,6 +30,7 @@ class FirebaseAuthRepository {
     }
   }
 
+  //Function to send verification link
   Future<void> sendVerificationLink() async {
     try {
       await _firebaseAuth.currentUser?.sendEmailVerification();
@@ -37,6 +39,7 @@ class FirebaseAuthRepository {
     }
   }
 
+  //Function to signup
   Future<Either<Failure, model.User>> signUpWithEmail({
     required String email,
     required String password,
@@ -70,6 +73,7 @@ class FirebaseAuthRepository {
     }
   }
 
+  //Function to login user
   Future<Either<Failure, model.User>> loginWithEmailPassword({
     required String email,
     required String password,
@@ -101,6 +105,7 @@ class FirebaseAuthRepository {
     }
   }
 
+  //Function to sign out
   Future<Either<Failure, void>> signOut() async {
     try {
       await _firebaseAuth.signOut();
@@ -108,14 +113,5 @@ class FirebaseAuthRepository {
     } catch (e) {
       return left(Failure(e.toString()));
     }
-  }
-}
-
-class AuthException implements Exception {
-  final String message;
-  AuthException(this.message);
-  @override
-  String toString() {
-    return message;
   }
 }

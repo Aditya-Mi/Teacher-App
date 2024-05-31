@@ -75,6 +75,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     add(AuthCheckEmailVerification());
   }
 
+  //Function to continuously check if email is verified
   void _onAuthCheckEmailVerification(
     AuthCheckEmailVerification event,
     Emitter<AuthState> emit,

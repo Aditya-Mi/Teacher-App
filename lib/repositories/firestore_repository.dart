@@ -8,6 +8,7 @@ class FirestoreRepository {
   final FirebaseFirestore _firebaseFirestore;
   FirestoreRepository(this._firebaseFirestore);
 
+  //Function to fetch all students
   Stream<Either<Failure, List<Student>>> fetchAllStudents(String userId) {
     return _firebaseFirestore
         .collection('users')
@@ -26,6 +27,7 @@ class FirestoreRepository {
     });
   }
 
+  //Function to add a  student
   Future<Either<Failure, void>> addStudent(
       String userId, Student student) async {
     try {
@@ -41,6 +43,7 @@ class FirestoreRepository {
     }
   }
 
+  //Function to update a  student
   Future<Either<Failure, void>> updateStudent(
       String userId, Student student) async {
     try {
@@ -56,6 +59,7 @@ class FirestoreRepository {
     }
   }
 
+  //Function to delete a  student
   Future<Either<Failure, void>> deleteStudent(String userId, String id) async {
     try {
       await _firebaseFirestore
